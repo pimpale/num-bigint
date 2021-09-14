@@ -84,6 +84,8 @@
 //!
 //! The `num-bigint` crate is tested for rustc 1.31 and greater.
 
+#![feature(allocator_api)]
+
 #![doc(html_root_url = "https://docs.rs/num-bigint/0.4")]
 #![warn(rust_2018_idioms)]
 #![no_std]
@@ -99,6 +101,9 @@ mod std_alloc {
     pub(crate) use std::boxed::Box;
     pub(crate) use std::string::String;
     pub(crate) use std::vec::Vec;
+
+    pub(crate) use std::alloc::Allocator;
+    pub(crate) use std::alloc::Global;
 }
 
 #[cfg(not(feature = "std"))]
@@ -112,6 +117,9 @@ mod std_alloc {
     pub(crate) use alloc::boxed::Box;
     pub(crate) use alloc::string::String;
     pub(crate) use alloc::vec::Vec;
+
+    pub(crate) use alloc::Allocator;
+    pub(crate) use alloc::Global;
 }
 
 use core::fmt;
